@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "shooter",
+      "path": "./shooter"
+    },
+    {
+      "name": "uploader",
+      "path": "./uploader"
+    }
+  ]
+}
