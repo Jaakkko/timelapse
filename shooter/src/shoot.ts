@@ -21,8 +21,6 @@ export default function shoot(): void {
     '100',
     '--sharpness',
     '100',
-    '-t',
-    '1',
     '-o',
   ]
 
