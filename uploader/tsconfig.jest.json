@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.compile.json",
+  "compilerOptions": {
+    "paths": {
+      "@src/*": ["src/*"]
+    }
+  },
+  "include": ["test/**/*"]
+}

@@ -3,3 +3,4 @@
 **/coverage/
 **/jestCache/
 **/dist/
+**/upload.sh
