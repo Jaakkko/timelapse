@@ -19,6 +19,8 @@ export default async function moveToS3(fileName: string): Promise<void> {
       Bucket: config.bucket,
       Key: fileName,
       Body: fs.createReadStream(filePath),
+      ContentType: 'image/jpeg',
+      StorageClass: 'STANDARD_IA',
     })
   )
 
