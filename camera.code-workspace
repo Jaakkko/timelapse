@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "shooter",
-      "path": "./shooter"
+      "path": "./camera/shooter"
     },
     {
       "name": "uploader",
-      "path": "./uploader"
+      "path": "./camera/uploader"
     }
   ]
 }
