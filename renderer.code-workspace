@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "download-filenames",
+      "path": "./renderer/download-filenames"
+    },
+    {
+      "name": "render",
+      "path": "./renderer/render"
+    }
+  ]
+}

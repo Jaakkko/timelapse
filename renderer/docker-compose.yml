@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  download-filenames:
+    build: download-filenames
+    depends_on:
+      - mq
+    volumes:
+      - ./download-filenames/.env:/app/.env:ro
+      - download-filenames-variables:/app/data
+    environment:
+      NODE_ENV: production
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
+  mq:
+    image: rabbitmq:3.9
+    volumes:
+      - queue:/var/lib/rabbitmq
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 3
+volumes:
+  queue:
+  download-filenames-variables:

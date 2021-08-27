@@ -1,0 +1,50 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "optionalDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.9",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.2",
+    "@types/cron": "^1.7.3",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.14",
+    "@types/source-map-support": "^0.5.3",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.16.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "jest": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.27.0",
+    "amqplib": "^0.8.0",
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "exponential-backoff": "^3.1.0",
+    "source-map-support": "^0.5.19",
+    "winston": "^3.3.3"
+  },
+  "scripts": {
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-ts": "tsc -w --project tsconfig.compile.json",
+    "watch-node": "nodemon --watch dist dist/main.js",
+    "build": "tsc --project tsconfig.compile.json",
+    "test": "cross-env NODE_ENV=test jest --forceExit --coverage --verbose --detectOpenHandles",
+    "lint": "eslint --no-error-on-unmatched-pattern src test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
