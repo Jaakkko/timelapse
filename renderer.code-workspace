@@ -8,5 +8,8 @@
       "name": "render",
       "path": "./renderer/render"
     }
-  ]
+  ],
+  "settings": {
+    "typescript.preferences.importModuleSpecifier": "relative"
+  }
 }

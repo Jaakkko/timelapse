@@ -1,5 +1,5 @@
 {
-  "name": "download-filenames",
+  "name": "render",
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
@@ -11,10 +11,10 @@
   },
   "devDependencies": {
     "@types/amqplib": "^0.8.2",
-    "@types/cron": "^1.7.3",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.14",
     "@types/source-map-support": "^0.5.3",
+    "@types/sqlite3": "^3.1.7",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
     "cross-env": "^7.0.3",
@@ -28,10 +28,12 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.27.0",
     "amqplib": "^0.8.0",
-    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "exponential-backoff": "^3.1.0",
+    "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.37",
     "winston": "^3.3.3"
   },
   "scripts": {
@@ -40,7 +42,7 @@
     "watch-node": "nodemon --watch dist dist/main.js",
     "build": "tsc --project tsconfig.compile.json",
     "test": "cross-env NODE_ENV=test jest --forceExit --coverage --verbose --detectOpenHandles",
-    "lint": "eslint --no-error-on-unmatched-pattern src test"
+    "lint": "eslint src test"
   },
   "husky": {
     "hooks": {

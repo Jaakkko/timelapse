@@ -1,7 +1,7 @@
 import { S3, ListObjectsV2Command } from '@aws-sdk/client-s3'
 import { backOff as unconfiguredBackOff } from 'exponential-backoff'
 import config from './config'
-import {sendToQueue} from './messageQueue'
+import { sendToQueue } from './messageQueue'
 
 const backOff = <T>(request: () => Promise<T>) =>
   unconfiguredBackOff(request, { delayFirstAttempt: true })
@@ -32,7 +32,7 @@ export async function goThroughTheList(
       )
     )
     keys = (Contents || []).map((e) => e.Key as string)
-    if (keys.length > 0) {
+    if (keys.length > 1) {
       StartAfter = keys[keys.length - 1]
     } else {
       break
