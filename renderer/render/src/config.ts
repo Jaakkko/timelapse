@@ -15,6 +15,14 @@ function findEnv<T extends string>(...values: T[]): Record<T, string> {
   return result
 }
 
-const config = findEnv('access', 'secret', 'bucket', 'database')
+const config = findEnv(
+  'access',
+  'secret',
+  'bucket',
+  'database',
+  'averageImageSizeInMegaBytes',
+  'maxMemoryConsumptionPercent',
+  'maxMemoryConumptionMegaBytes'
+)
 
 export default config

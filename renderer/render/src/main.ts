@@ -3,12 +3,14 @@ sourceMapSupport.install()
 
 import 'reflect-metadata'
 import './logger'
-import { processNext } from './messageQueue'
+import { processNext, connection as rabbitMQConnection } from './messageQueue'
 import { backOff as unconfiguredBackOff } from 'exponential-backoff'
 import renderVideo from './renderVideo'
 import progress from './progress'
 import fs from 'fs'
 import concatVideosSync from './concatVideosSync'
+
+logger.info('Renderer started')
 
 const backOff = <T>(request: () => Promise<T>) =>
   unconfiguredBackOff(request, { delayFirstAttempt: true })
@@ -42,3 +44,8 @@ void backOff(() =>
     logger.info('Message processed')
   })
 )
+
+process.on('SIGTERM', () => {
+  rabbitMQConnection?.close()
+  process.exit(0)
+})
