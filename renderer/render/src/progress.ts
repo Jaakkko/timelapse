@@ -1,4 +1,5 @@
 import { createConnection, Connection } from 'typeorm'
+import config from './config'
 import { Checkpoint } from './entity/Checkpoint'
 
 let connection: Connection | null
@@ -7,7 +8,7 @@ async function getConnection(): Promise<Connection> {
   if (!connection) {
     connection = await createConnection({
       type: 'sqlite',
-      database: 'data/progress',
+      database: config.database,
       entities: [Checkpoint],
       synchronize: true,
       logging: false,
@@ -32,7 +33,6 @@ async function getVideoFilename(): Promise<string | undefined> {
     .orderBy('firstKey', 'DESC')
     .limit(1)
     .getOne()
-  console.log(found)
   return found?.videoFilename
 }
 

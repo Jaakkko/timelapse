@@ -18,7 +18,7 @@ void backOff(() =>
     logger.info('Got new message')
     console.log(keys)
     if (keys.length === 0 || (await progress.isConcatenated(keys[0]))) {
-      logger.info('Discarding...')
+      logger.warn('No keys or message already processed. Discarding!')
       return
     }
 
@@ -33,12 +33,12 @@ void backOff(() =>
       const newLongVideoPath = `data/${newLongVideoFilename}`
       concatVideosSync(oldLongVideoPath, renderedPath, newLongVideoPath)
       fs.unlinkSync(oldLongVideoPath)
+      fs.unlinkSync(renderedPath)
     } else {
-      logger.info('No previous videos')
+      logger.info('No previous video')
       fs.renameSync(renderedPath, `data/${newLongVideoFilename}`)
     }
     await progress.saveCheckpoint(keys[0], newLongVideoFilename)
-    fs.unlinkSync(renderedPath)
     logger.info('Message processed')
   })
 )
