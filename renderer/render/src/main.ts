@@ -24,16 +24,17 @@ void backOff(() =>
       return
     }
 
-    const renderedPath = `data/${new Date().toISOString()}.mp4`
+    const renderedFilename = `${new Date().toISOString()}.mp4`
+    const renderedPath = `data/${renderedFilename}`
     await renderVideo(keys, renderedPath)
 
-    const newLongVideoFilename = new Date().toISOString() + '.mp4'
+    const newLongVideoFilename = `${new Date().toISOString()}.mp4`
     const oldLongVideoFilename = await progress.getVideoFilename()
     if (oldLongVideoFilename) {
       logger.info('Concatenating videos')
-      const oldLongVideoPath = `data/${oldLongVideoFilename}`
       const newLongVideoPath = `data/${newLongVideoFilename}`
-      concatVideosSync(oldLongVideoPath, renderedPath, newLongVideoPath)
+      const oldLongVideoPath = `data/${oldLongVideoFilename}`
+      concatVideosSync(oldLongVideoFilename, renderedFilename, newLongVideoPath)
       fs.unlinkSync(oldLongVideoPath)
       fs.unlinkSync(renderedPath)
     } else {

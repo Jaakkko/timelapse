@@ -55,7 +55,11 @@ export default class ParallelPromiseQueue<T> {
 
   allProcessed(): Promise<void> {
     return new Promise((resolve) => {
-      this.resolveAllProcessed = resolve
+      if (this.isProcessing) {
+        this.resolveAllProcessed = resolve
+      } else {
+        resolve()
+      }
     })
   }
 }
