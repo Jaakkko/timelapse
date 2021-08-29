@@ -1,8 +1,7 @@
 version: "3.8"
 services:
   download-filenames:
-    image: download-filenames
-    #build: download-filenames
+    build: download-filenames
     depends_on:
       - mq
     volumes:
@@ -14,8 +13,7 @@ services:
       restart_policy:
         condition: any
   render:
-    image: render
-    #build: render
+    build: render
     depends_on:
       - mq
     volumes:

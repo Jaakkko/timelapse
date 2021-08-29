@@ -17,7 +17,7 @@ const s3 = new S3({
   region: 'eu-north-1',
 })
 
-const ffmpegArgs = '-r 60 -f jpeg_pipe -i pipe:'.split(' ')
+const ffmpegArgs = '-r 60 -f jpeg_pipe -i pipe: -b:v 10M'.split(' ')
 ffmpegArgs.push('-threads')
 ffmpegArgs.push(Math.max(1, os.cpus().length - 1).toString())
 
