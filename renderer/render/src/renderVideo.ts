@@ -101,6 +101,7 @@ export default async function renderVideo(
   await queue.allProcessed()
 
   ffmpeg.stdin.end()
-  logger.info('Rendering done')
+  logger.info('Waiting ffmpeg...')
   await ffmpegExited
+  logger.info('Rendering done')
 }
