@@ -24,11 +24,11 @@ void backOff(() =>
       return
     }
 
-    const renderedFilename = `${new Date().toISOString()}.mp4`
+    const renderedFilename = `${new Date().toISOString()}.webm`
     const renderedPath = `data/${renderedFilename}`
     await renderVideo(keys, renderedPath)
 
-    const newLongVideoFilename = `${new Date().toISOString()}.mp4`
+    const newLongVideoFilename = `${new Date().toISOString()}.webm`
     const oldLongVideoFilename = await progress.getVideoFilename()
     if (oldLongVideoFilename) {
       logger.info('Concatenating videos')
