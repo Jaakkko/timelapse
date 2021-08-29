@@ -13,7 +13,7 @@ let listingJob: Promise<string> | null = null
 const startAfter = new PersistentVariable('startAfter')
 
 new CronJob(
-  '0 0 * * *',
+  '0 0 * * 0',
   async () => {
     if (listingJob === null) {
       try {
