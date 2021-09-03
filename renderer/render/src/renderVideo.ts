@@ -17,14 +17,14 @@ const s3 = new S3({
   region: 'eu-north-1',
 })
 
-const ffmpegArgs = '-r 60 -f jpeg_pipe -i pipe: -b:v 10M'.split(' ')
+const ffmpegArgs = `-r 60 -f jpeg_pipe -i pipe: -b:v ${config.videoAverageBitrate}`.split(' ')
 ffmpegArgs.push('-threads')
 ffmpegArgs.push(Math.max(1, os.cpus().length - 1).toString())
 
 function calculateQueueSize(): number {
   const avgSize = parseFloat(config.averageImageSizeInMegaBytes) * 1048576
   const maxUsage = parseFloat(config.maxMemoryConsumptionPercent) * 0.01
-  const maxMemory = parseFloat(config.maxMemoryConumptionMegaBytes) * 1048576
+  const maxMemory = parseFloat(config.maxMemoryConsumptionMegaBytes) * 1048576
   return Math.floor((Math.min(os.freemem(), maxMemory) * maxUsage) / avgSize)
 }
 

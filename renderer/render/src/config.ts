@@ -20,9 +20,10 @@ const config = findEnv(
   'secret',
   'bucket',
   'database',
+  'videoAverageBitrate',
   'averageImageSizeInMegaBytes',
   'maxMemoryConsumptionPercent',
-  'maxMemoryConumptionMegaBytes'
+  'maxMemoryConsumptionMegaBytes'
 )
 
 export default config
