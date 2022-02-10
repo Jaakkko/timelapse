@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "download-filenames",
-      "path": "./renderer/download-filenames"
+      "path": "./renderer_continuous/download-filenames"
     },
     {
       "name": "render",
-      "path": "./renderer/render"
+      "path": "./renderer_continuous/render"
     }
   ],
   "settings": {
