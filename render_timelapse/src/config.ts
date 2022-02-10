@@ -19,6 +19,6 @@ function findEnv<T extends string>(...values: T[]): Record<T, string> {
   return result
 }
 
-const config = findEnv('access', 'secret', 'bucket')
+const config = findEnv('access', 'secret', 'bucket', 'cacheSize')
 
 export default config

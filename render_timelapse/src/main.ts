@@ -6,6 +6,7 @@ import { Readable } from 'stream'
 import config from './config'
 import s3ObjectKeysIterator from './s3ObjectKeysIterator'
 import { GetObjectCommand, S3 } from '@aws-sdk/client-s3'
+import os from 'os'
 import sourceMapSupport from 'source-map-support'
 sourceMapSupport.install()
 
@@ -20,8 +21,10 @@ const s3 = new S3({
   region: 'eu-north-1',
 })
 
-const cacheSize = 50
-const ffmpegArgs = `-r 60 -f jpeg_pipe -i pipe: -b:v 20M output.webm`.split(' ')
+const ffmpegArgs = '-r 60 -f jpeg_pipe -i pipe: -b:v 20M'.split(' ')
+ffmpegArgs.push('-threads')
+ffmpegArgs.push(os.cpus().length.toString())
+ffmpegArgs.push('output.webm')
 
 const ffmpeg = spawn('ffmpeg', ffmpegArgs)
 logger.info(`$ ffmpeg ${ffmpegArgs.join(' ')}`)
@@ -36,10 +39,8 @@ const ffmpegExited = new Promise<void>((resolve, reject) => {
   })
 })
 
-logger.info('%o', ffmpegExited)
-
 const queue = new ParallelPromiseQueue<{ buffer: Buffer; key: string }>(
-  cacheSize,
+  parseInt(config.cacheSize),
   ({ buffer, key }) =>
     new Promise((resolve) => {
       logger.verbose('%s -> ffmpeg', key)
